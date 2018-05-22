@@ -1,0 +1,499 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+        h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+            padding: 0.3em;
+        }
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+        body {
+			font-family : segoe ui;
+        }
+
+        td, th {
+            padding: 0.5em;
+			text-align : left;
+			width: 10em;
+        }
+        th {
+			background-color : #EEEEEE;
+
+        }
+        th.column1, td.column1 {
+            text-align: left;
+            width : auto;
+        }
+        table {
+            width : 100%;
+			font-size: 0.9em;
+        }
+        
+        .DRC_summary_header {                           
+            padding-bottom : 0.1em;
+            border : 0px solid black;                           
+            width: 100%;
+			align: left;
+        }
+
+        .DRC_summary_header_col1, 
+        .DRC_summary_header_col2, 
+        .DRC_summary_header_col3  {
+            color : black;
+            font-size:100%;
+                        padding : 0em;
+            padding-top : 0.2em;
+            padding-bottom 0.2em;
+            border : 0px solid black;
+            vertical-align: top;
+			text-align: left;
+        }
+        
+        .DRC_summary_header_col1 {                              
+			font-weight: bold;
+			width: 8em;
+        }
+
+        .DRC_summary_header_col2 {       
+			width: 0.1em;
+		
+        }
+
+        .DRC_summary_header_col3 {       
+			width : auto;
+        }
+
+        .header_holder  {
+        Width = 100%;
+        border = 0px solid green;
+        padding = 0;
+        }
+        
+        
+        .front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+                {
+            left:0;
+            top:0;
+			padding: 0em;
+            padding-top : 0.1em;            
+            border : 0px solid black;
+            width : 100%;
+            vertical-align: top;
+            text-align: left;
+        }
+
+        .front_matter_column1 {
+            width : 8em;   
+			font-weight: bold;
+        }
+        
+        .front_matter_column2 {
+            width: 0.1em;
+        }
+
+        .front_matter_column3 {
+            width         : auto;  
+        }
+        
+        .total_column1, .total_column {
+            font-weight : bold;
+        }
+        .total_column1 {
+			text-align : left;
+        }
+        .warning, .error {
+            color : red;
+            font-weight : bold;
+        }
+        tr.onmouseout_odd {
+			background-color : #white;
+        }
+        tr.onmouseout_even { 
+			background-color : #FAFAFA;
+        }
+        tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+        } 
+        a:link, a:visited, .q a:link,.q a:active,.q {
+            color: #21489e; 
+        }
+        a:link.callback, a:visited.callback { 
+            color: #21489e; 
+        }
+        p.contents_level1 {
+            font-weight : bold;
+            font-size : 110%;
+            margin : 0.5em;
+        }
+        p.contents_level2 {
+            position : relative;
+            left : 20px;
+            margin : 0.5em;
+        }
+    </style><script type="text/javascript">
+        function coordToMils(coord) {
+            var number = coord / 10000;
+            
+            if (number != number.toFixed(3))
+                number = number.toFixed(3);
+
+            return number + 'mil'
+        }
+
+        function coordToMM(coord) {
+            var number = 0.0254 * coord / 10000;
+            
+            if (number != number.toFixed(4))
+                number = number.toFixed(4);
+            
+            return number + 'mm'
+        }
+    
+        function convertCoord(coordNode, units) {
+            for (var i = 0; i < coordNode.childNodes.length; i++) {
+                coordNode.removeChild(coordNode.childNodes[i]);
+            }
+
+            var coord = coordNode.getAttribute('value');
+            if (coord != null) {
+                if (units == 'mm') {
+                    textNode = document.createTextNode(coordToMM(coord));
+                    coordNode.appendChild(textNode);
+                } else if (units == 'mil') {
+                    textNode = document.createTextNode(coordToMils(coord));     
+                    coordNode.appendChild(textNode);    
+                }
+            }
+        }
+    
+        function convertUnits(unitNode, units) {
+            for (var i = 0; i < unitNode.childNodes.length; i++) {
+                unitNode.removeChild(unitNode.childNodes[i]);       
+            }
+        
+            textNode = document.createTextNode(units); 
+            unitNode.appendChild(textNode);
+        }
+    
+        function changeUnits(radio_input, units) {
+            if (radio_input.checked) {
+            
+                var elements = document.getElementsByName('coordinate');
+                if (elements) {
+                    for (var i = 0; i < elements.length; i++) {
+                        convertCoord(elements[i], units);
+                    }
+                }
+    
+                var elements = document.getElementsByName('units');
+                if (elements) {
+                    for (var i = 0; i < elements.length; i++) {
+                        convertUnits(elements[i], units);
+                    }
+                }
+            }
+        }
+    </script></head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD16_VGTU\Templates\AD_logo.png
+        "><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2017-09-22</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">15:32:23</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:11:34</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc" class="file"><acronym title="E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc">E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">15</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+</table>
+</td>
+</table><a name="IDEAWDD15PNSUIOZ3P3JJ3H52J2JWYLW5HDNNCNTPJMDX2GKLZZREL"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDYDYXV2A5TZUYBZ3TQ3WHWZOQTJYHZNDE1WSZ2EJXB3RFPINFUQGO">Unplated multi-layer pad(s) detected</a></td>
+<td class="column2">15</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">15</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDKBCE5VOQ0AD3JXT01QUUZMXH3KLFISQ2LBVCUYNGIOQJVZ2PJWEO">Matched Lengths(Tolerance=0.1mm) (InNetClass('RxPLL_CLK'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDX4RNV245NGLOKMNQKUYOIKTVRB0SN1RJ0GX3D5J5ZOLNAHZI0JYC">Matched Lengths(Tolerance=0.1mm) (InNetClass('TxPLL_CLK'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDMGNO1SZ5K50GB3VBOCP114Q0RK5CDRJQ3MPVBHDR2F5H0YUQCLRK">Width Constraint (Min=0.1mm) (Max=20mm) (Preferred=0.2mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDNOBOLX0HRMKSL31FEGV32BIECMYTWAPUHGA222H1M0G4LYDBSS0P">Short-Circuit Constraint (Allowed=Yes) (InComponent('IC50') and ispad and (name='IC50-4')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID1G30GN45WPYPKSDD3IYSZNQKROKFSYYCVGERGFE3JDRMVD2RDP4E">Component Clearance Constraint ( Horizontal Gap = -1mm, Vertical Gap = Infinite ) (InComponent('IC30')),(InComponent('IC32')) </a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDH1WBYAQWWT1WNFSYVDIPIDWTHLAGVRJJBGNCYGBOQITXNK1YITHB">Differential Pairs Uncoupled Length using the Gap Constraints (Min=0.1mm) (Max=0.3mm) (Prefered=0.14mm)  and Width Constraints (Min=0.1mm) (Max=0.5mm) (Prefered=0.2mm) (InNetClass('TX1_BB_I') or InNetClass('TX1_BB_Q'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID2X5VIYDMOWB4JZKERW4T5IKQ0GQFZ3QPP4NI0FGT24SZZF0FAY4">Matched Lengths(Tolerance=0.8mm) (InNetClass('FX3_GPIF1'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDMBSH5CFF445I2GP1JTCFPECNDFRTMOTJ5JATJNANXRFVZOLLD1K">Matched Lengths(Tolerance=0.8mm) (InNetClass('FX3_CTL[0..12]') or InNetClass('FX3_DQ[0..15]') or InNet('FX3_PCLK'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDSPKH5OGFFBKME5MNDK4ATRHM5EFMPOYQ0RXK3MDZAI4OA5XLCSTC">Matched Lengths(Tolerance=0.5mm) (InNetClass('DAC2_DATA'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDBYWCQMZEA5SWMASMT3Z0QK23IIF34EH4TPI0VKERRQ0ECQBHSQ4C">Differential Pairs Uncoupled Length using the Gap Constraints (Min=0.1mm) (Max=0.3mm) (Prefered=0.2mm)  and Width Constraints (Min=0.1mm) (Max=0.3mm) (Prefered=0.2mm) (InNetClass('RX_RF'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTPR1KN1GWDWGIPCCID0KECGK3CEBZL5P4Y0UBRLD2TKBQ3QBGUCC">Differential Pairs Uncoupled Length using the Gap Constraints (Min=0.1mm) (Max=0.3mm) (Prefered=0.2mm)  and Width Constraints (Min=0.1mm) (Max=0.3mm) (Prefered=0.2mm) (InNetClass('TX_RF'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDOSB1Y0PSJWP2IH4UPI5TLKGRDGWQEMNCZ5URURNHLHW3SVDLYEMI">Differential Pairs Uncoupled Length using the Gap Constraints (Min=0.1mm) (Max=0.3mm) (Prefered=0.1mm)  and Width Constraints (Min=0.2mm) (Max=0.2mm) (Prefered=0.2mm) (InNetClass('FX3_DATA'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDITKFFEPDHIGLEKJ4PUVY1UAS5DWWJDPMC0EINJBYXDCCA4DH1RWO">Matched Lengths(Tolerance=0.5mm) (InNetClass('LMS1_PORT2'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDIWYOUYOFI3NBPVGSAGASRC0VQHVEWDSP11TTXMHG1SIMDQGNBBNO">Matched Lengths(Tolerance=0.5mm) (InNetClass('LMS1_PORT1'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDLWXBX0FGJYEXJQTZG44M2RHDYHFPLT1CT2P542CMMFL4KDFC3PS">Differential Pairs Uncoupled Length using the Gap Constraints (Min=0.1mm) (Max=0.2mm) (Prefered=0.1mm)  and Width Constraints (Min=0.1mm) (Max=0.5mm) (Prefered=0.1mm) (InNetClass('DDR2_1_CK') or InNetClass('DDR2_1_CK'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDFLSIHMDFEZXGBY2IDUA5UIY22BEZKLMQQQX44XG153KZARVTT2KO">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDRPDQZJXFSY00OE335QNNXMR3CLGWP0OTM221JAISDKDX2FCF0YEM">Height Constraint (Min=0mm) (Max=2.67mm) (Prefered=2.67mm) (OnBottomLayer)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQTZ2AZVVIJ4GPIMUKOTVKQXVHKMDN5QOBEVBMDBR2TLFKYIJ5ZOJ">Component Clearance Constraint ( Horizontal Gap = 0.01mm, Vertical Gap = 0.254mm ) (All),(All) </a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDATGSYD53Q5K5MLMOWLXAR3MYHC1RXS15HAXFJHNEJDMUPORHKW5E">Differential Pairs Uncoupled Length using the Gap Constraints (Min=0.1mm) (Max=0.3mm) (Prefered=0.1mm)  and Width Constraints (Min=0.1mm) (Max=0.6mm) (Prefered=0.2mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID1WPRDINRBHZOF3FZQBLNY5SGHC4QBTSL2X4CUACA0E2GRQT1ZWUH">Height Constraint (Min=0mm) (Max=14.47mm) (Prefered=14.47mm) (OnTopLayer)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID4KUZACEP13YBIO2KCEVKX4DJ0HP2LKAPGENWK5CRCH1GJBLD5FLP">Hole Size Constraint (Min=0.2mm) (Max=10mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDADBOD5U0QXMBO24A1BFLTG0VWGSBOE04L2A3Y2PQSLAXGW0MJJVK">Pads and Vias to follow the Drill pairs settings</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDPHSFZIAISZ2SKUVCQ5KALZZZDKF0VKDX2W5IV2G5XINDBUQUCGON">Routing Via (MinHoleWidth=0.2mm) (MaxHoleWidth=4.5mm) (PreferredHoleWidth=0.2mm) (MinWidth=0.31mm) (MaxWidth=5mm) (PreferedWidth=0.4mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDXJIPLYS00HPRLEEMCU2LK4GZCNDYBQ3XHZWFIUFKFIDBNNEVI5ZD">Width Constraint (Min=0.1mm) (Max=5mm) (Preferred=0.2mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDV0EECQAXZII0HWYBL3WLMT3QWKU5LO2AV0WCLHYGCFWRGENMDFB">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDUJLXNBMTEB44CL5HBW0UK4YTGBZ34E5LLVLZ2OQKCLMN1WP1J2P">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDFA1P3ZTIAEO2KVHLKIFWIDWSTD33DA2S5S2S4VKYCNL5DXQRINXN">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQ5FJG2FFFBXKHMHYBIOOLUNDHLZYL13L45C55ED1UHENS4FWGRUO">Clearance Constraint (Gap=0.1mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDMIXD3NOBJWSXG5WSKPKDISC0LIF3OO5F43TPKHK3NCN3V3I2HTBI">Routing Layers(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDPRJJCDCWHWLVIOCREKHQTUMWXKDNWRAGBNIAEDLB5SCTVBSWNMCO">Hole To Hole Clearance (Gap=0.15mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDY2GUJF5CWYF0HD3LHUF1QFHIJLBJGL4D0TEPY2V44LSKRCCOJ3L">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDZKIBMB3QWIM0LVYCZE1EU2C5OF3X0GUMW2GZ5LG34ZYAQYLG2OJN">Matched Lengths(Tolerance=0.5mm) (InNetClass('DDR3_TOP_DQ[0..31]'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDFBTYNLXHTUM3CZAADREAMPYCPGXECLARGUQBPNIDJJBEVDBSCOGH">Matched Lengths(Tolerance=0.5mm) (InNetClass('DDR2_2_A[0..12]'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDBXFKPT05DVEYCEY4EA331XPLHIFI0MVNQQGCQXJYBGIZDQSR5YVE">Matched Lengths(Tolerance=0.5mm) (InNetClass('DDR3_BOT_DQ[0..31]'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDQM3M5I3GPXLRCDQIWU4WU4WDLDJIX5BRL1NKJLDX40OWLOXEQNTD">Matched Lengths(Tolerance=0.5mm) (InNetClass('DDR2_1_A[0..12]'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID2A0QSKDKIWE5LCNYFU4CNYHZHGHYFLICS5HAUL3MZME0LOD0R4D">Differential Pairs Uncoupled Length using the Gap Constraints (Min=0.1mm) (Max=0.2mm) (Prefered=0.1mm)  and Width Constraints (Min=0.1mm) (Max=0.4mm) (Prefered=0.1mm) (InNet('FX3_XTAL_N') or InNet('FX3_XTAL_P'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID5UVXIXSCQM10JCPRDQDKZXU4GCHVOARGZDZFIHMCY04TQWF5F0NI">Matched Lengths(Tolerance=0.5mm) (InNetClass('DDR3_TOP_A[0..13]'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDYCVVH4BDCOOW2UCHYCSI4JTTF2DBFTXIZY2BKCEF4UJLYVGIXWP">Matched Lengths(Tolerance=0.5mm) (InNetClass('DDR3_BOT_A[0..13]'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDVZ1TKMDNI2UZPJSA2ZFFDV2YVOMPN1FM1XZZBMFTM3Y2ZKTEBOOP">Differential Pairs Uncoupled Length using the Gap Constraints (Min=0.2mm) (Max=0.2mm) (Prefered=0.2mm)  and Width Constraints (Min=0.2mm) (Max=0.5mm) (Prefered=0.3mm) (InNetClass('PCIE') and (OnTopLayer or OnBottomLayer))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQETZUNYQPAFIKH1EZSEZY1E5SDAKSQER53GQ3EER0VHP4100BYWL">Matched Lengths(Tolerance=0.5mm) (InNetClass('DAC1_DATA'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDEHZJ32TXHIGCLXIBRXZD4Q5ZIHN1THRMQR4TPHOSDCVHGL0MGP3O">Matched Lengths(Tolerance=0.5mm) (InNetClass('LMS2_PORT1'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID2KEEE0DRWGQ0KWGEZUUFQ5WV1GIXEQRBGNRQQRFSAGPDNOHLJSV">Matched Lengths(Tolerance=0.5mm) (InNetClass('LMS2_PORT2'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDY24BPSNENBXVIKYWXWADTS3EEEYY0QALDSSW43KCE1XQCSTQOR0J">Component Clearance Constraint ( Horizontal Gap = -1mm, Vertical Gap = Infinite ) (InComponent('R372') or InComponent('R374') or InComponent('R368') or InComponent('R364') or InComponent('R379') or InComponent('R384')),(InComponent('R372') or InComponent('R374') or InComponent('R368') or InComponent('R364') or InComponent('R379') or InComponent('R384')) </a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDOY2LPEFY2YSHBKRZEZFSNYDJCNCKKJEHDGW5WMBGBUL5INFMKYJP">Height Constraint (Min=0mm) (Max=30mm) (Prefered=14.47mm) (InComponent('FAN1') or HasFootprint('PCIe_bracket'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDI02BHFHS1R4PPDCTLR5LILMVFL2BP0MXPRLMOKJ4JRTEXCHK3NHO">Component Clearance Constraint ( Horizontal Gap = -1mm, Vertical Gap = Infinite ) (HasFootprint('PCIE_BRACKET')),(HasFootprint('PCIe_bracket_screw_M2.5')) </a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><a name="IDACCYAVLQ2VQUK4J5DRUIF43USF5JXFQW4P2DY4OZGGLLEALDMBAG"><h2>Warnings</h2></a><a name="IDYDYXV2A5TZUYBZ3TQ3WHWZOQTJYHZNDE1WSZ2EJXB3RFPINFUQGO"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="warning">Unplated multi-layer pad(s) detected</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8697.85mil|Location2.X=8733.283mil|Location1.Y=8296.26mil|Location2.Y=8331.693mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8697.85mil|Location2.X=8733.283mil|Location1.Y=8296.26mil|Location2.Y=8331.693mil|Absolute=True">Pad Free-0(121.375mm,111.175mm) on MultiLayer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8792.338mil|Location2.X=8827.771mil|Location1.Y=8296.26mil|Location2.Y=8331.693mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8792.338mil|Location2.X=8827.771mil|Location1.Y=8296.26mil|Location2.Y=8331.693mil|Absolute=True">Pad Free-0(123.775mm,111.175mm) on MultiLayer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8745.094mil|Location2.X=8780.527mil|Location1.Y=8296.26mil|Location2.Y=8331.693mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8745.094mil|Location2.X=8780.527mil|Location1.Y=8296.26mil|Location2.Y=8331.693mil|Absolute=True">Pad Free-0(122.575mm,111.175mm) on MultiLayer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7594.503mil|Location2.X=7629.936mil|Location1.Y=4423.228mil|Location2.Y=4458.661mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7594.503mil|Location2.X=7629.936mil|Location1.Y=4423.228mil|Location2.Y=4458.661mil|Absolute=True">Pad Free-0(93.35mm,12.8mm) on MultiLayer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7641.747mil|Location2.X=7677.18mil|Location1.Y=4423.228mil|Location2.Y=4458.661mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7641.747mil|Location2.X=7677.18mil|Location1.Y=4423.228mil|Location2.Y=4458.661mil|Absolute=True">Pad Free-0(94.55mm,12.8mm) on MultiLayer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7688.991mil|Location2.X=7724.424mil|Location1.Y=4423.228mil|Location2.Y=4458.661mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7688.991mil|Location2.X=7724.424mil|Location1.Y=4423.228mil|Location2.Y=4458.661mil|Absolute=True">Pad Free-0(95.75mm,12.8mm) on MultiLayer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11400.59mil|Location2.X=11436.023mil|Location1.Y=6313.99mil|Location2.Y=6349.423mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11400.59mil|Location2.X=11436.023mil|Location1.Y=6313.99mil|Location2.Y=6349.423mil|Absolute=True">Pad Free-0(190.025mm,60.825mm) on MultiLayer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11400.59mil|Location2.X=11436.023mil|Location1.Y=6408.479mil|Location2.Y=6443.912mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11400.59mil|Location2.X=11436.023mil|Location1.Y=6408.479mil|Location2.Y=6443.912mil|Absolute=True">Pad Free-0(190.025mm,63.225mm) on MultiLayer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11400.59mil|Location2.X=11436.023mil|Location1.Y=6361.234mil|Location2.Y=6396.667mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11400.59mil|Location2.X=11436.023mil|Location1.Y=6361.234mil|Location2.Y=6396.667mil|Absolute=True">Pad Free-0(190.025mm,62.025mm) on MultiLayer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5650.606mil|Location2.X=5686.039mil|Location1.Y=8297.244mil|Location2.Y=8332.677mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5650.606mil|Location2.X=5686.039mil|Location1.Y=8297.244mil|Location2.Y=8332.677mil|Absolute=True">Pad Free-0(43.975mm,111.2mm) on MultiLayer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5745.094mil|Location2.X=5780.527mil|Location1.Y=8297.244mil|Location2.Y=8332.677mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5745.094mil|Location2.X=5780.527mil|Location1.Y=8297.244mil|Location2.Y=8332.677mil|Absolute=True">Pad Free-0(46.375mm,111.2mm) on MultiLayer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5697.85mil|Location2.X=5733.283mil|Location1.Y=8297.244mil|Location2.Y=8332.677mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5697.85mil|Location2.X=5733.283mil|Location1.Y=8297.244mil|Location2.Y=8332.677mil|Absolute=True">Pad Free-0(45.175mm,111.2mm) on MultiLayer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3921.26mil|Location2.X=3956.693mil|Location1.Y=6406.482mil|Location2.Y=6441.915mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3921.26mil|Location2.X=3956.693mil|Location1.Y=6406.482mil|Location2.Y=6441.915mil|Absolute=True">Pad Free-0(0.05mm,63.175mm) on MultiLayer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3921.26mil|Location2.X=3956.693mil|Location1.Y=6311.993mil|Location2.Y=6347.426mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3921.26mil|Location2.X=3956.693mil|Location1.Y=6311.993mil|Location2.Y=6347.426mil|Absolute=True">Pad Free-0(0.05mm,60.775mm) on MultiLayer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3921.26mil|Location2.X=3956.693mil|Location1.Y=6359.238mil|Location2.Y=6394.671mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3921.26mil|Location2.X=3956.693mil|Location1.Y=6359.238mil|Location2.Y=6394.671mil|Absolute=True">Pad Free-0(0.05mm,61.975mm) on MultiLayer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Saniok\Lime Micro\Lime PCBs\LimeSDR-QPCIe_1v2\AltiumDesigner Design files\PCB\LimeSDR-QPCIe_1v2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

@@ -1,0 +1,14 @@
+Project Outputs Generation Report
+---------------------------------
+Start Output Generation At 16:05:59 On 2017-09-22
+
+Output: Generates pick and place files
+Type  : Pick Place
+From  : Variant [[No Variations]] of PCB Document [LimeSDR-QPCIe_1v2.PcbDoc]
+   Generated File[Pick Place for LimeSDR-QPCIe_1v2.txt]
+
+
+Files Generated   : 1
+Documents Printed : 0
+
+Finished Output Generation At 16:06:32 On 2017-09-22
