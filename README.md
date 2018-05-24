@@ -24,14 +24,14 @@ The [LimeSDR-QPCIe ](https://wiki.myriadrf.org/LimeSDR-QPCIe) board provides a h
   * 2x DAC5672A, dual, 14-bit, Digital-To-Analog converters
   * 1x ADS424, Dual-Channel, 14-bit, Analog-To-Digital converter
 
-* **Memory Devices **
+* **Memory Devices**
   * 4 x 2Gbit DDR3 SDRAM (128M x 16)
   * 4Mbit flash for FX3 firmware
   * 128Mbit flash for FPGA gateware
   * 2 x 128Kbit and 2 x 512Kbit EEPROMs for LMS MCU firmware, LMS MCU data
   * 1 x 128K EEPROM for FX3 or FPGA data
 
-* **Connections **
+* **Connections**
   * microUSB3.0 (type B) connector
   * PCIe edge connector
   * Coaxial RF (U.FL) connectors
@@ -55,7 +55,7 @@ The [LimeSDR-QPCIe ](https://wiki.myriadrf.org/LimeSDR-QPCIe) board provides a h
   * DS3231 real-time clock.
   * M0578-A3 GPS/GNSS module receiver
 
-* **Board Size 190mm x 106.7mm (7.48” x 4.20”) **
+* **Board Size 190mm x 106.7mm (7.48” x 4.20”)**
 
 
 ## Contents
